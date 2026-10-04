@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-arcade: 'Press Start 2P', monospace;
+    --font-pixel: 'Silkscreen', monospace;
+    --font-vt: 'VT323', monospace;
+  }
+
+  body {
+    background-color: #060814;
+    color: #e2e8f0;
+    font-family: var(--font-pixel), sans-serif;
+  }
+}
+
+.font-arcade {
+  font-family: var(--font-arcade), monospace;
+}
+
+.font-pixel {
+  font-family: var(--font-pixel), monospace;
+}
+
+.font-vt {
+  font-family: var(--font-vt), monospace;
+}
+
+/* Pixel rendering */
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Retro CRT scanline effect */
+.crt-overlay {
+  position: relative;
+}
+.crt-overlay::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Pixel border utilities */
+.pixel-box {
+  box-shadow: 
+    -3px 0 0 0 #000,
+    3px 0 0 0 #000,
+    0 -3px 0 0 #000,
+    0 3px 0 0 #000,
+    -6px 0 0 0 #3b82f6,
+    6px 0 0 0 #3b82f6,
+    0 -6px 0 0 #3b82f6,
+    0 6px 0 0 #3b82f6;
+}
+
+.pixel-btn {
+  box-shadow: 
+    inset -2px -2px 0px 0px rgba(0, 0, 0, 0.5),
+    inset 2px 2px 0px 0px rgba(255, 255, 255, 0.4);
+  transition: transform 0.08s ease, filter 0.08s ease;
+}
+
+.pixel-btn:active {
+  transform: translateY(2px);
+  box-shadow: 
+    inset 2px 2px 0px 0px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 0px 0px rgba(255, 255, 255, 0.2);
+}
+
+/* Custom retro scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border: 1px solid #475569;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0ea5e9;
+}
+
+/* Key press animations */
+@keyframes key-flash {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(0.97); filter: brightness(1.6); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.piano-active {
+  animation: key-flash 0.15s ease-out;
+}

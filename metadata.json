@@ -1,0 +1,6 @@
+{
+  "name": "Ace Space",
+  "description": "Retro pixel-art cosmic music voyage across planet Earth. Customize your pixel space avatar, pick or randomize iconic global destinations, and perform live synthesizer concerts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
